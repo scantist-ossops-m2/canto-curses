@@ -135,6 +135,11 @@ class GuiBase(CommandHandler):
 
         href = shlex.quote(href)
 
+        # Make sure that we quote href such that malicious URLs like
+        # "http://example.com & rm -rf ~/" won't be interpreted by the shell.
+
+        href = shlex.quote(href)
+
         # A lot of programs don't appreciate
         # having their fds closed, so instead
         # we dup them to /dev/null.
